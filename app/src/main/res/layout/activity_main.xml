@@ -6,67 +6,87 @@
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
     android:orientation="vertical">
 
-    <TextView android:id="@+id/tv" android:layout_width="wrap_content"
+
+    <!--The time remaining will be displayed here-->
+    <TextView
+        android:id="@+id/timeLeft"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+    <!--The time chosen will be displayed here-->
     <TextView
         android:id="@+id/tvv"
         android:text=""
         android:layout_width="200dp"
         android:layout_height="40dp"
-        android:layout_above="@+id/et"
+        android:layout_above="@+id/minutes"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="64dp" />
 
+    <!--Input for the number of minutes-->
     <EditText
-    android:layout_width="100dp"
-    android:layout_height="wrap_content"
-    android:inputType="numberDecimal"
-    android:ems="10"
-    android:id="@+id/et"
+        android:id="@+id/minutes"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
         android:layout_alignTop="@+id/seconds"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
+    <!--Input for the number of seconds-->
     <EditText
+        android:id="@+id/seconds"
         android:hint="unfinished"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
         android:ems="10"
-        android:id="@+id/seconds"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/b"
-        android:layout_toEndOf="@+id/b"
+        android:layout_toRightOf="@+id/start"
+        android:layout_toEndOf="@+id/start"
         android:layout_marginLeft="38dp"
         android:layout_marginStart="38dp" />
 
+    <!--Start button-->
     <Button
-        android:id="@+id/b"
+        android:id="@+id/start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Click to Start"
+        android:text="@string/start"
         android:onClick="startRepeater"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
+    <!--Stop button-->
+    <Button
+        android:id="@+id/stop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:text="@string/stop"
+        android:onClick="stopRepeater"/>
+
+    <!--The word minutes and seconds will be displayed here-->
     <TextView
+        android:id="@+id/minutesWord"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Minutes"
-        android:id="@+id/textView"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/et"
-        android:layout_toEndOf="@+id/et" />
+        android:layout_toRightOf="@+id/minutes"
+        android:layout_toEndOf="@+id/minutes" />
 
     <TextView
+        android:id="@+id/secondsWord"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Seconds"
-        android:id="@+id/textView2"
-        android:layout_alignTop="@+id/textView"
+        android:layout_alignTop="@+id/minutesWord"
         android:layout_toRightOf="@+id/seconds"
         android:layout_toEndOf="@+id/seconds" />
 
