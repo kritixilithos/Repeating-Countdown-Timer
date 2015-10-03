@@ -29,7 +29,7 @@
         android:id="@+id/minutes"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
+        android:inputType="number"
         android:ems="10"
         android:layout_alignTop="@+id/seconds"
         android:layout_alignParentLeft="true"
@@ -38,16 +38,13 @@
     <!--Input for the number of seconds-->
     <EditText
         android:id="@+id/seconds"
-        android:hint="unfinished"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
+        android:inputType="number"
         android:ems="10"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/start"
-        android:layout_toEndOf="@+id/start"
-        android:layout_marginLeft="38dp"
-        android:layout_marginStart="38dp" />
+        android:layout_toEndOf="@+id/start" />
 
     <!--Start button-->
     <Button
@@ -76,7 +73,7 @@
         android:id="@+id/minutesWord"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Minutes"
+        android:text="min"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/minutes"
         android:layout_toEndOf="@+id/minutes" />
@@ -85,7 +82,7 @@
         android:id="@+id/secondsWord"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Seconds"
+        android:text="sec"
         android:layout_alignTop="@+id/minutesWord"
         android:layout_toRightOf="@+id/seconds"
         android:layout_toEndOf="@+id/seconds" />

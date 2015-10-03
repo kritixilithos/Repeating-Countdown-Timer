@@ -19,17 +19,22 @@ public class MainActivity extends AppCompatActivity {
     Ringtone r;
     boolean clicked = false;
     EditText minutes;
+    EditText seconds;
 
-    public void repeatTimer(double numMins) {
-        final double milliseconds = numMins * 60000;
-        final double mins = numMins;
+    public void repeatTimer(int numMins, int numSecs) {
+        final int milliseconds = numMins * 60000 + numSecs*1000;
+        final int mins = numMins;
+        final int secs = numSecs;
 
         timeLeft = (TextView) findViewById(R.id.timeLeft);
-        new CountDownTimer((int) milliseconds, 1000) {
+        new CountDownTimer(milliseconds, 1000) {
 
             public void onTick(long millisUntilFinished) {
 
-                timeLeft.setText("seconds remaining: " + millisUntilFinished / 1000);
+                double minutesLeft = Math.floor(millisUntilFinished / 60000);
+                double secondsLeft = (millisUntilFinished / 1000)-minutesLeft*60;
+
+                timeLeft.setText("Time remaining: " + minutesLeft + "min " + secondsLeft +"sec");
                 if (millisUntilFinished < milliseconds - 1000) {
                     r.stop();
                 }
@@ -44,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
             public void onFinish() {
                 r.play();
-                repeatTimer(mins);
+                repeatTimer(mins, secs);
             }
         }.start();
     }
@@ -53,16 +58,18 @@ public class MainActivity extends AppCompatActivity {
     public void startRepeater(View view) {
         if(!clicked) {
             minutes = (EditText) findViewById(R.id.minutes);
+            seconds = (EditText) findViewById(R.id.seconds);
             tvv = (TextView) findViewById(R.id.tvv);
 
             notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
             r = RingtoneManager.getRingtone(getApplicationContext(), notification);
             r.play();
 
-            double numValue = Double.parseDouble(minutes.getText().toString());
+            int minValue = Integer.parseInt(minutes.getText().toString());
+            int secValue = Integer.parseInt(seconds.getText().toString());
 
-            tvv.setText(numValue + "");
-            repeatTimer(numValue);
+            tvv.setText(minValue + "min " + secValue + "sec");
+            repeatTimer(minValue, secValue);
         }
         clicked = true;
     }
@@ -76,6 +83,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        minutes = (EditText) findViewById(R.id.minutes);
+        seconds = (EditText) findViewById(R.id.seconds);
+        minutes.setText("0");
+        seconds.setText("0");
     }
 
     @Override
