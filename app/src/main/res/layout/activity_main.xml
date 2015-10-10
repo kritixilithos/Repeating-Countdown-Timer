@@ -16,13 +16,23 @@
     <!--The time chosen will be displayed here-->
     <TextView
         android:id="@+id/tvv"
-        android:text=""
-        android:layout_width="200dp"
+        android:text="Time chosen:"
+        android:layout_width="wrap_content"
         android:layout_height="40dp"
+        android:layout_above="@+id/elapsed"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <!--The time elapsed will be shown here-->
+    <TextView
+        android:id="@+id/elapsed"
+        android:text="Elapsed Time:"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginBottom="57dp"
         android:layout_above="@+id/minutes"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="64dp" />
+        android:layout_alignParentStart="true" />
 
     <!--Input for the number of minutes-->
     <EditText

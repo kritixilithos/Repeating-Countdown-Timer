@@ -13,6 +13,8 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 public class MainActivity extends AppCompatActivity {
     TextView timeLeft;
     TextView tvv;
@@ -21,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
     boolean clicked = false;
     EditText minutes;
     EditText seconds;
+    TextView elapsed;
+    long elapsedTime = 0;
+    long startTime = 0;
 
     public void repeatTimer(int numMins, int numSecs) {
         final int milliseconds = numMins * 60000 + numSecs*1000;
@@ -35,6 +40,14 @@ public class MainActivity extends AppCompatActivity {
                 double minutesLeft = Math.floor(millisUntilFinished / 60000);
                 double secondsLeft = (millisUntilFinished / 1000)-minutesLeft*60;
 
+                elapsed = (TextView) findViewById(R.id.elapsed);
+                elapsedTime = System.currentTimeMillis() - startTime;
+
+                double minsElapsed = Math.floor(elapsedTime / 60000);
+                double secsElapsed = (elapsedTime / 1000)-minsElapsed*60;
+
+                elapsed.setText("Elapsed time: " + minsElapsed+"min " + secsElapsed+"sec");
+
                 timeLeft.setText("Time remaining: " + minutesLeft + "min " + secondsLeft +"sec");
                 if (millisUntilFinished < milliseconds - 1000) {
                     r.stop();
@@ -43,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
                     r.stop();
                     timeLeft.setText(" ");
                     tvv = (TextView) findViewById(R.id.tvv);
-                    tvv.setText("");
+                    tvv.setText("Time Chosen: ");
                     this.cancel();
                 }
             }
@@ -58,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void startRepeater(View view) {
         if(!clicked) {
+            startTime = System.currentTimeMillis();
             minutes = (EditText) findViewById(R.id.minutes);
             seconds = (EditText) findViewById(R.id.seconds);
             tvv = (TextView) findViewById(R.id.tvv);
@@ -69,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
             int minValue = Integer.parseInt(minutes.getText().toString());
             int secValue = Integer.parseInt(seconds.getText().toString());
 
-            tvv.setText(minValue + "min " + secValue + "sec");
+            tvv.setText("Time Chosen: "+minValue + "min " + secValue + "sec");
             repeatTimer(minValue, secValue);
         }
         clicked = true;
@@ -87,6 +101,9 @@ public class MainActivity extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         minutes = (EditText) findViewById(R.id.minutes);
         seconds = (EditText) findViewById(R.id.seconds);
+        elapsed = (TextView) findViewById(R.id.elapsed);
+
+        elapsed.setText("Elapsed time: "+elapsedTime);
         minutes.setText("0");
         seconds.setText("0");
     }
