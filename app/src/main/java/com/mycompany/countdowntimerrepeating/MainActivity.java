@@ -10,12 +10,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     TextView timeLeft;
     TextView tvv;
     Uri notification;
@@ -26,6 +29,18 @@ public class MainActivity extends AppCompatActivity {
     TextView elapsed;
     long elapsedTime = 0;
     long startTime = 0;
+    Spinner spinner;
+    Object alarmType;
+
+    public void onItemSelected(AdapterView<?> parent, View view,
+                               int pos, long id) {
+        // An item was selected. You can retrieve the selected item using
+        alarmType = parent.getItemAtPosition(pos);
+    }
+
+    public void onNothingSelected(AdapterView<?> parent) {
+        // Another interface callback
+    }
 
     public void repeatTimer(int numMins, int numSecs) {
         final int milliseconds = numMins * 60000 + numSecs*1000;
@@ -76,7 +91,23 @@ public class MainActivity extends AppCompatActivity {
             seconds = (EditText) findViewById(R.id.seconds);
             tvv = (TextView) findViewById(R.id.tvv);
 
-            notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+            System.out.println(alarmType.toString());
+
+            switch(alarmType.toString()) {
+                case "ALARM":
+                    notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+                    break;
+                case "NOTIFICATION":
+                    notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                    break;
+                case "ALL":
+                    notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALL);
+                    break;
+                case "RINGTONE":
+                    notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
+                    break;
+            }
+
             r = RingtoneManager.getRingtone(getApplicationContext(), notification);
             r.play();
 
@@ -102,6 +133,15 @@ public class MainActivity extends AppCompatActivity {
         minutes = (EditText) findViewById(R.id.minutes);
         seconds = (EditText) findViewById(R.id.seconds);
         elapsed = (TextView) findViewById(R.id.elapsed);
+        spinner = (Spinner)  findViewById(R.id.spinner);
+        spinner.setOnItemSelectedListener(this);
+// Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.alarm_sounds, android.R.layout.simple_spinner_item);
+// Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+// Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
 
         elapsed.setText("Elapsed time: "+elapsedTime);
         minutes.setText("0");

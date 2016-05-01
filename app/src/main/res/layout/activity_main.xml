@@ -43,7 +43,9 @@
         android:ems="10"
         android:layout_alignTop="@+id/seconds"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:background="#00ff00"
+        android:padding="2dp" />
 
     <!--Input for the number of seconds-->
     <EditText
@@ -54,7 +56,9 @@
         android:ems="10"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/start"
-        android:layout_toEndOf="@+id/start" />
+        android:layout_toEndOf="@+id/start"
+        android:background="#00ff00"
+        android:padding="2dp" />
 
     <!--Start button-->
     <Button
@@ -96,5 +100,13 @@
         android:layout_alignTop="@+id/minutesWord"
         android:layout_toRightOf="@+id/seconds"
         android:layout_toEndOf="@+id/seconds" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner"
+        android:layout_below="@+id/minutes"
+        android:layout_alignLeft="@+id/start"
+        android:layout_marginTop="42dp" />
 
 </RelativeLayout>

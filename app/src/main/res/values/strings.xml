@@ -5,4 +5,10 @@
     <string name="action_settings">Settings</string>
     <string name="start">Click to Start</string>
     <string name="stop">Click to Stop</string>
+    <string-array name="alarm_sounds">
+        <item>ALARM</item>
+        <item>NOTIFICATION</item>
+        <item>ALL</item>
+        <item>RINGTONE</item>
+    </string-array>
 </resources>
