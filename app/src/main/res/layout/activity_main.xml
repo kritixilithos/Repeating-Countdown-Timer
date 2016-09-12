@@ -8,57 +8,14 @@
 
 
     <!--The time remaining will be displayed here-->
-    <TextView
-        android:id="@+id/timeLeft"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
     <!--The time chosen will be displayed here-->
-    <TextView
-        android:id="@+id/tvv"
-        android:text="Time chosen:"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_above="@+id/elapsed"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
     <!--The time elapsed will be shown here-->
-    <TextView
-        android:id="@+id/elapsed"
-        android:text="Elapsed Time:"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_marginBottom="57dp"
-        android:layout_above="@+id/minutes"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
     <!--Input for the number of minutes-->
-    <EditText
-        android:id="@+id/minutes"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:ems="10"
-        android:layout_alignTop="@+id/seconds"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:background="#00ff00"
-        android:padding="2dp" />
 
     <!--Input for the number of seconds-->
-    <EditText
-        android:id="@+id/seconds"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:ems="10"
-        android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/start"
-        android:layout_toEndOf="@+id/start"
-        android:background="#00ff00"
-        android:padding="2dp" />
 
     <!--Start button-->
     <Button
@@ -82,31 +39,63 @@
         android:text="@string/stop"
         android:onClick="stopRepeater"/>
 
-    <!--The word minutes and seconds will be displayed here-->
-    <TextView
-        android:id="@+id/minutesWord"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/minutes"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:text="min"
-        android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/minutes"
-        android:layout_toEndOf="@+id/minutes" />
+        android:gravity="end"
+        android:inputType="number"
+        android:textSize="30sp"
+        android:padding="5dp"
+        android:layout_alignBottom="@+id/colon1"
+        android:layout_toLeftOf="@+id/colon1"
+        android:layout_toStartOf="@+id/colon1" />
+
+    <EditText
+        android:id="@+id/seconds"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:inputType="number"
+        android:textSize="30sp"
+        android:padding="5dp"
+        android:layout_alignBottom="@+id/colon1"
+        android:layout_toRightOf="@+id/colon1"
+        android:layout_toEndOf="@+id/colon1" />
 
     <TextView
-        android:id="@+id/secondsWord"
+        android:text=":"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="sec"
-        android:layout_alignTop="@+id/minutesWord"
-        android:layout_toRightOf="@+id/seconds"
-        android:layout_toEndOf="@+id/seconds" />
+        android:id="@+id/colon1"
+        android:padding="5dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="171dp" />
+
+    <TextView
+        android:id="@+id/tvv"
+        android:text="Time chosen:"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/colon1"
+        android:layout_alignEnd="@+id/colon1" />
 
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/spinner"
         android:layout_below="@+id/minutes"
-        android:layout_alignLeft="@+id/start"
-        android:layout_marginTop="42dp" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="98dp" />
+
+    <TextView
+        android:id="@+id/elapsed"
+        android:text=""
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_below="@+id/colon1"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

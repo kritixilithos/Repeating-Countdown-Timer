@@ -19,7 +19,7 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    TextView timeLeft;
+    //TextView timeLeft;
     TextView tvv;
     Uri notification;
     Ringtone r;
@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         final int mins = numMins;
         final int secs = numSecs;
 
-        timeLeft = (TextView) findViewById(R.id.timeLeft);
         new CountDownTimer(milliseconds, 1000) {
 
             public void onTick(long millisUntilFinished) {
@@ -57,19 +56,27 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
                 elapsed = (TextView) findViewById(R.id.elapsed);
                 elapsedTime = System.currentTimeMillis() - startTime;
+                minutes = (EditText) findViewById(R.id.minutes);
+                seconds = (EditText) findViewById(R.id.seconds);
 
                 double minsElapsed = Math.floor(elapsedTime / 60000);
                 double secsElapsed = (elapsedTime / 1000)-minsElapsed*60;
 
-                elapsed.setText("Elapsed time: " + minsElapsed+"min " + secsElapsed+"sec");
+                String secsElapsedTxt = (secsElapsed+"").split("\\.")[0];
+                if(secsElapsedTxt.length() == 1) {
+                    secsElapsedTxt = "0"+secsElapsedTxt;
+                }
+                elapsed.setText((minsElapsed+"").split("\\.")[0]+":" + secsElapsedTxt);
 
-                timeLeft.setText("Time remaining: " + minutesLeft + "min " + secondsLeft +"sec");
+                //displaying int instead of double
+                minutes.setText((minutesLeft+"").split("\\.")[0]);
+                seconds.setText((secondsLeft+"").split("\\.")[0]);
+
                 if (millisUntilFinished < milliseconds - 1000) {
                     r.stop();
                 }
                 if(!clicked) {
                     r.stop();
-                    timeLeft.setText(" ");
                     tvv = (TextView) findViewById(R.id.tvv);
                     tvv.setText("Time Chosen: ");
                     this.cancel();
@@ -143,7 +150,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
 
-        elapsed.setText("Elapsed time: "+elapsedTime);
+        elapsed.setText(""+elapsedTime);
         minutes.setText("0");
         seconds.setText("0");
     }

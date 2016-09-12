@@ -6,7 +6,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/loop_clock"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
